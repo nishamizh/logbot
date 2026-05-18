@@ -19,11 +19,13 @@ from logbot.api.server import app
 @pytest_asyncio.fixture
 async def client():
     """Async test client with full lifespan (startup + shutdown)."""
-    async with AsyncClient(
-        transport=ASGITransport(app=app),
-        base_url="http://test",
-    ) as c:
-        yield c
+    from asgi_lifespan import LifespanManager
+    async with LifespanManager(app):
+        async with AsyncClient(
+            transport=ASGITransport(app=app),
+            base_url="http://test",
+        ) as c:
+            yield c
 
 
 # ──────────────────────────────────────────────────────────────────────────────
