@@ -1,0 +1,45 @@
+timestamp,source,level,service,message,error_rate,critical_rate,error_count,critical_count,unique_services,error_burst,is_anomaly,anomaly_type
+2024-01-15T00:00:00Z,payments.log,INFO,payments,Health check OK,0.02,0.0,2,0,3,0,0,normal
+2024-01-15T00:05:00Z,payments.log,INFO,payments,Request processed,0.03,0.0,3,0,3,0,0,normal
+2024-01-15T00:10:00Z,payments.log,WARNING,payments,Slow DB query 1200ms,0.04,0.0,4,0,3,1,0,normal
+2024-01-15T00:15:00Z,payments.log,INFO,payments,Cache hit ratio 0.92,0.02,0.0,2,0,3,0,0,normal
+2024-01-15T00:20:00Z,payments.log,INFO,payments,Request processed,0.03,0.0,3,0,3,0,0,normal
+2024-01-15T00:25:00Z,payments.log,ERROR,payments,DB connection timeout after 30s,0.45,0.0,45,0,3,5,1,error_spike
+2024-01-15T00:30:00Z,payments.log,ERROR,payments,DB connection timeout after 30s,0.52,0.05,52,5,3,8,1,error_spike
+2024-01-15T00:35:00Z,payments.log,CRITICAL,payments,Circuit breaker OPEN - payments service,0.78,0.25,78,25,3,12,1,critical_spike
+2024-01-15T00:40:00Z,payments.log,CRITICAL,payments,All DB connections exhausted,0.90,0.40,90,40,3,15,1,critical_spike
+2024-01-15T00:45:00Z,payments.log,ERROR,payments,Fallback to read-only mode,0.60,0.10,60,10,3,8,1,error_spike
+2024-01-15T00:50:00Z,payments.log,WARNING,payments,Recovery in progress,0.20,0.0,20,0,3,2,0,normal
+2024-01-15T00:55:00Z,payments.log,INFO,payments,Circuit breaker CLOSED,0.04,0.0,4,0,3,0,0,normal
+2024-01-15T01:00:00Z,auth.log,INFO,auth,Login success user_001,0.01,0.0,1,0,2,0,0,normal
+2024-01-15T01:05:00Z,auth.log,INFO,auth,Login success user_002,0.02,0.0,2,0,2,0,0,normal
+2024-01-15T01:10:00Z,auth.log,WARNING,auth,Failed login attempt,0.05,0.0,5,0,2,1,0,normal
+2024-01-15T01:15:00Z,auth.log,ERROR,auth,Brute force detected - IP blocked,0.35,0.0,35,0,2,6,1,error_spike
+2024-01-15T01:20:00Z,auth.log,ERROR,auth,Auth service rate limit exceeded,0.48,0.0,48,0,2,9,1,error_spike
+2024-01-15T01:25:00Z,auth.log,CRITICAL,auth,Auth service unreachable,0.80,0.30,80,30,2,14,1,critical_spike
+2024-01-15T01:30:00Z,auth.log,INFO,auth,Service recovered,0.03,0.0,3,0,2,0,0,normal
+2024-01-15T01:35:00Z,auth.log,INFO,auth,Login success user_003,0.02,0.0,2,0,2,0,0,normal
+2024-01-15T02:00:00Z,api-gateway.log,INFO,api-gateway,GET /health 200 12ms,0.01,0.0,1,0,4,0,0,normal
+2024-01-15T02:05:00Z,api-gateway.log,INFO,api-gateway,POST /payments 200 145ms,0.02,0.0,2,0,4,0,0,normal
+2024-01-15T02:10:00Z,api-gateway.log,WARNING,api-gateway,Slow response POST /payments 2100ms,0.08,0.0,8,0,4,2,0,normal
+2024-01-15T02:15:00Z,api-gateway.log,ERROR,api-gateway,POST /payments 503 upstream timeout,0.42,0.0,42,0,4,7,1,error_spike
+2024-01-15T02:20:00Z,api-gateway.log,ERROR,api-gateway,Upstream payments service down,0.65,0.15,65,15,4,11,1,critical_spike
+2024-01-15T02:25:00Z,api-gateway.log,INFO,api-gateway,Failover to backup region,0.05,0.0,5,0,4,0,0,normal
+2024-01-15T02:30:00Z,api-gateway.log,INFO,api-gateway,GET /health 200 8ms,0.02,0.0,2,0,4,0,0,normal
+2024-01-15T03:00:00Z,db.log,INFO,postgres,Query executed 45ms,0.01,0.0,1,0,2,0,0,normal
+2024-01-15T03:05:00Z,db.log,INFO,postgres,Connection pool: 8/20 used,0.02,0.0,2,0,2,0,0,normal
+2024-01-15T03:10:00Z,db.log,WARNING,postgres,Connection pool: 18/20 used,0.05,0.0,5,0,2,1,0,normal
+2024-01-15T03:15:00Z,db.log,ERROR,postgres,Connection pool exhausted,0.55,0.0,55,0,2,9,1,error_spike
+2024-01-15T03:20:00Z,db.log,CRITICAL,postgres,Out of memory - killing queries,0.85,0.45,85,45,2,16,1,critical_spike
+2024-01-15T03:25:00Z,db.log,CRITICAL,postgres,Disk space critical - 98% used,0.90,0.55,90,55,2,18,1,critical_spike
+2024-01-15T03:30:00Z,db.log,ERROR,postgres,Replica lag 45 seconds,0.40,0.05,40,5,2,6,1,error_spike
+2024-01-15T03:35:00Z,db.log,WARNING,postgres,Replica lag recovering 12s,0.10,0.0,10,0,2,1,0,normal
+2024-01-15T03:40:00Z,db.log,INFO,postgres,All connections healthy,0.02,0.0,2,0,2,0,0,normal
+2024-01-15T04:00:00Z,worker.log,INFO,worker,Job queue_email processed,0.01,0.0,1,0,3,0,0,normal
+2024-01-15T04:05:00Z,worker.log,INFO,worker,Job queue_report processed,0.02,0.0,2,0,3,0,0,normal
+2024-01-15T04:10:00Z,worker.log,ERROR,worker,Job queue_payment failed - retry 1/3,0.30,0.0,30,0,3,4,1,error_spike
+2024-01-15T04:15:00Z,worker.log,ERROR,worker,Job queue_payment failed - retry 2/3,0.45,0.0,45,0,3,7,1,error_spike
+2024-01-15T04:20:00Z,worker.log,ERROR,worker,Job queue_payment failed - retry 3/3 DEAD,0.60,0.0,60,0,3,10,1,error_spike
+2024-01-15T04:25:00Z,worker.log,CRITICAL,worker,Dead letter queue overflow,0.75,0.35,75,35,3,13,1,critical_spike
+2024-01-15T04:30:00Z,worker.log,INFO,worker,Queue drained - resuming,0.03,0.0,3,0,3,0,0,normal
+2024-01-15T04:35:00Z,worker.log,INFO,worker,Job queue_email processed,0.01,0.0,1,0,3,0,0,normal
