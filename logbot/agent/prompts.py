@@ -3,7 +3,7 @@ logbot/agent/prompts.py
 ────────────────────────
 All LLM prompt templates for LogBot's agent layer.
 
-Design decisions (interview-ready talking points):
+Design decisions :
   • Prompts are versioned constants — no f-strings scattered across the codebase.
   • System prompt uses ReAct format (Reason + Act) so the LLM alternates
     between THOUGHT, ACTION, OBSERVATION, and ANSWER steps.
